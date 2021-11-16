@@ -1,0 +1,345 @@
+/*
+ * watch_functions.c
+ *
+ *  Created on: Nov 11, 2021
+ *      Author: gurk
+ */
+
+
+#include <stdio.h>
+#include "xparameters.h"
+#include "xgpio.h"
+#include "xtmrctr.h"
+#include "xscugic.h"
+#include "xil_exception.h"
+#include "xil_printf.h"
+#include "xtime_l.h"
+#include <unistd.h>
+
+int displayNumber(int hour10, hour1, min10, min1, sec10, sec1){
+
+	if (sec1 > 9) {
+		sec10++;
+		sec1 = 0;
+		}
+	if (sec10 > 5) {
+		min1++;
+		sec10 = 0;
+		}
+	if (min1 > 9) {
+		min10++;
+		min1 = 0;
+	}
+	if (min10 > 5) {
+		hour1++;
+		min10 = 0;
+	}
+	if (hour1 > 9) {
+		hour10++;
+		hour1 = 0;
+	}
+	if (hour10 > 1 && hour1 > 3) {
+		hour1 = 0;
+		hour10 = 0;
+	}
+
+
+	for (int i = 0; i < 9; i++) {
+
+	switch(hour10) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		}
+
+			xil_printf(" ");
+
+		switch (hour1) {
+			case 0:
+				xil_printf("%s", number0[i]);
+				break;
+		case 1:
+				xil_printf("%s", number1[i]);
+				break;
+		case 2:
+				xil_printf("%s", number2[i]);
+				break;
+		case 3:
+				xil_printf("%s", number3[i]);
+				break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		case 7:
+			xil_printf("%s", number7[i]);
+			break;
+		case 8:
+			xil_printf("%s", number8[i]);
+			break;
+		case 9:
+			xil_printf("%s", number9[i]);
+			break;
+		}
+
+		xil_printf(colon[i]);
+
+		switch (min10) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		case 3:
+			xil_printf("%s", number3[i]);
+			break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		}
+
+		xil_printf(" ");
+
+		switch (min1) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		case 3:
+			xil_printf("%s", number3[i]);
+			break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		case 7:
+			xil_printf("%s", number7[i]);
+			break;
+		case 8:
+			xil_printf("%s", number8[i]);
+			break;
+		case 9:
+			xil_printf("%s", number9[i]);
+			break;
+		}
+
+		xil_printf(colon[i]);
+
+		switch (sec10) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		case 3:
+			xil_printf("%s", number3[i]);
+			break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		}
+
+		xil_printf(" ");
+
+		switch (sec1) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		case 3:
+			xil_printf("%s", number3[i]);
+			break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		case 7:
+			xil_printf("%s", number7[i]);
+			break;
+		case 8:
+			xil_printf("%s", number8[i]);
+			break;
+		case 9:
+			xil_printf("%s", number9[i]);
+			break;
+		}
+
+		xil_printf("\n\r");
+
+	}
+
+	xil_printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+	return sec1;
+}
+
+void displayAlarm(int alarmHour10, int alarmHour1, int alarmMinute10, int alarmMinute1){
+
+	for (int i = 0; i < 9; i++) {
+
+	switch(alarmHour10) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		}
+
+			xil_printf(" ");
+
+		switch (alarmHour1) {
+			case 0:
+				xil_printf("%s", number0[i]);
+				break;
+		case 1:
+				xil_printf("%s", number1[i]);
+				break;
+		case 2:
+				xil_printf("%s", number2[i]);
+				break;
+		case 3:
+				xil_printf("%s", number3[i]);
+				break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		case 7:
+			xil_printf("%s", number7[i]);
+			break;
+		case 8:
+			xil_printf("%s", number8[i]);
+			break;
+		case 9:
+			xil_printf("%s", number9[i]);
+			break;
+		}
+
+		xil_printf(colon[i]);
+
+		switch (alarmMinute10) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		case 3:
+			xil_printf("%s", number3[i]);
+			break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		}
+
+		xil_printf(" ");
+
+		switch (alarmMinute1) {
+		case 0:
+			xil_printf("%s", number0[i]);
+			break;
+		case 1:
+			xil_printf("%s", number1[i]);
+			break;
+		case 2:
+			xil_printf("%s", number2[i]);
+			break;
+		case 3:
+			xil_printf("%s", number3[i]);
+			break;
+		case 4:
+			xil_printf("%s", number4[i]);
+			break;
+		case 5:
+			xil_printf("%s", number5[i]);
+			break;
+		case 6:
+			xil_printf("%s", number6[i]);
+			break;
+		case 7:
+			xil_printf("%s", number7[i]);
+			break;
+		case 8:
+			xil_printf("%s", number8[i]);
+			break;
+		case 9:
+			xil_printf("%s", number9[i]);
+			break;
+		}
+
+
+
+		xil_printf("\n\r");
+
+	}
+
+	xil_printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+}

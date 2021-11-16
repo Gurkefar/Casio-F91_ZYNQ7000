@@ -1,0 +1,16 @@
+/*
+ * watch_functions.h
+ *
+ *  Created on: Nov 11, 2021
+ *      Author: gurk
+ */
+
+#ifndef SRC_WATCH_FUNCTIONS_H_
+#define SRC_WATCH_FUNCTIONS_H_
+
+int displayNumber(int hour10, int hour1, int min10, int min1, int sec10, int sec1);
+void displayAlarm(int alarmhour10, int alarmHour1, int alarmMinute10, int alarmMinute1);
+void setAsciinumbers();
+
+
+#endif /* SRC_WATCH_FUNCTIONS_H_ */

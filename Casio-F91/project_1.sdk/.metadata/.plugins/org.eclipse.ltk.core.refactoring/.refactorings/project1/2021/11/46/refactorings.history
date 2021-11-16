@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;project1/src/interrupt_counter_tut_2D_fixed(2).c&apos; to &apos;interrupt_counter_tut_2D_fixed.c&apos;" description="Rename resource &apos;interrupt_counter_tut_2D_fixed(2).c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/interrupt_counter_tut_2D_fixed(2).c" name="interrupt_counter_tut_2D_fixed.c" stamp="1636625265377" updateReferences="true"/>
+</session>

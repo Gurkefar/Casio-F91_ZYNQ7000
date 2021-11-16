@@ -1,0 +1,13 @@
+/*
+ * test.c
+ *
+ *  Created on: Nov 4, 2021
+ *      Author: gurk
+ */
+#include "xil_printf.h"
+
+
+void test(int num){
+	xil_printf("hello\n");
+	xil_printf("%d\n", num);
+}

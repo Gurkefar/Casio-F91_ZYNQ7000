@@ -1,0 +1,18 @@
+/*
+ * watch_functions.h
+ *
+ *  Created on: Nov 11, 2021
+ *      Author: gurk
+ */
+
+#ifndef SRC_WATCH_FUNCTIONS_H_
+#define SRC_WATCH_FUNCTIONS_H_
+
+
+int displayNumber(int sec1);
+void displayAlarm();
+void setAsciinumbers();
+int setAlarm(XGpio BTNInst);
+
+
+#endif /* SRC_WATCH_FUNCTIONS_H_ */
